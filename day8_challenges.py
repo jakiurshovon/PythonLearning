@@ -5,7 +5,8 @@ while True:
     print("2. View all tasks")
     print("3. Mark tasks as done")
     print("4. Delete a task")
-    print("5. Exit")
+    print("5. Save the task")
+    print("6. Exit")
 
     choice = input("Chose an option (1-4): ")
 
@@ -47,6 +48,15 @@ while True:
                 print("Invalid Task number")
     
     elif choice == "5":
+        with open("todo.txt", "w") as file:
+            for item in todo_list:
+                task = item["task"]
+                done = 1 if item["done"] else "0"
+                file.write(f"{task}|{done}\n")
+                print("Tasks saved to todo.txt")
+
+    
+    elif choice == "6":
         print("Goodby")
         break
     else:
