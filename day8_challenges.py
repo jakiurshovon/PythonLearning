@@ -1,4 +1,20 @@
+import os
+
 todo_list = []
+
+# Load tasks from file if exists
+if os.path.exists("todo.txt"):
+    with open("todo.txt", "r") as file:
+        for line in file:
+            if "|" in line:
+                task_text, done_status = line.strip().split("|")
+                task_dict = {
+                    "task" : task_text,
+                    "done" : done_status == "1"  # convert string to boolean
+                }
+                todo_list.append(task_dict)
+
+
 while True:
     print((".........To Do List........."))
     print("1. Add tasks")
@@ -8,7 +24,7 @@ while True:
     print("5. Save the task")
     print("6. Exit")
 
-    choice = input("Chose an option (1-4): ")
+    choice = input("Chose an option (1-6): ")
 
     if choice == "1":
         task = input("Enter task: ")
