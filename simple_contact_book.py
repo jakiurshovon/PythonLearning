@@ -32,12 +32,31 @@ def search_name():
         if not found:
             print("Contact not found")
 
+
+def delete_name():
+    delete_name = input("Enter the name that you want to delete: ").lower()
+    found = False
+    for contact in contacts:
+        if delete_name in contact['name'].lower():
+            confirm = input("Do you want to delete the contact(y/N)?: ").lower()
+            if confirm == "y":
+                contacts.remove(contact)
+                print(f"The contacts, {delete_name}, has been successfully deleted!")
+            else:
+                print("Deletion Cancelled")
+            found = True
+            break
+    if not found:
+        print("No contact found")
+                    
+
 while True:
     print("..........Add Contact.........")
     print("1. Add Contact")
     print("2. View ontacts")
     print("3. Search ontacts")
-    print("4. Exit")
+    print("4. Delete contact")
+    print("5. Exit")
     choice = input(" Choose an option: ")
 
     if choice == "1":
@@ -50,6 +69,9 @@ while True:
         search_name()
     
     elif choice == "4":
+        delete_name()
+
+    elif choice == "5":
         print("Goodbye!")
         break
     else:
